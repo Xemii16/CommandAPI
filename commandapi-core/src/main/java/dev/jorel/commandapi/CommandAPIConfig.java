@@ -46,6 +46,7 @@ public class CommandAPIConfig {
 	NMS<?> customNMS;
 	
 	boolean disablePostLoadDatapackReload = false;
+	boolean disablePaperReloadHook = false;
 
 	/**
 	 * Sets verbose output logging for the CommandAPI if true.
@@ -145,6 +146,16 @@ public class CommandAPIConfig {
 	 */
 	public CommandAPIConfig setCustomNMS(NMS<?> customNMS) {
 		this.customNMS = customNMS;
+		return this;
+	}
+	
+	public CommandAPIConfig disablePostLoadDatapackReload(boolean disable) {
+		this.disablePostLoadDatapackReload = disable;
+		return this;
+	}
+	
+	public CommandAPIConfig disablePaperReloadHook(boolean disable) {
+		this.disablePaperReloadHook = disable;
 		return this;
 	}
 

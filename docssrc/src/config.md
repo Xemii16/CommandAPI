@@ -144,6 +144,30 @@ disable-post-load-datapack-reload: true
 
 -----
 
+### `disable-paper-datapack-reload-hook`
+
+Controls whether the CommandAPI should perform its custom datapack reload when you run `/minecraft:reload`.
+
+On Paper-based servers, when the `/minecraft:reload` command is run, the CommandAPI will run its custom datapack reload step to re-link all registered Commands with all datapacks. More information about this can be found [here](./incompatibleversions.md#commandapi-behavior-with-respect-to-minecraft-version).
+
+When this setting is set to `true`, the CommandAPI will not perform this datapack reload step when `/minecraft:reload`. This will prevent commands registered via the CommandAPI from linking to any datapacks that requires commands registered via the CommandAPI (for example, in datapack functions or tags).
+
+This setting can be set to `true` if you are having issues with the CommandAPI interfering with datapack reloading.
+
+**Default value**
+
+```yml
+disable-paper-datapack-reload-hook: false
+```
+
+**Example value**
+
+```yml
+disable-paper-datapack-reload-hook: true
+```
+
+-----
+
 ### `plugins-to-convert`
 
 Controls the list of plugins to process for command conversion. See [Command conversion](./conversionforowners.md) for more information.

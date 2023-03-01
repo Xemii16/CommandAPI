@@ -238,7 +238,9 @@ public final class CommandAPI {
 			logNormal("Chat preview is not available");
 		}
 
-		CommandAPIHandler.getInstance().getPaper().registerReloadHandler(plugin);
+		if (!CommandAPI.getConfiguration().hasDisabledPaperReloadHook()) {
+			CommandAPIHandler.getInstance().getPaper().registerReloadHandler(plugin);
+		}
 	}
 
 	/**

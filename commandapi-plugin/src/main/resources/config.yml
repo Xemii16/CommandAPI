@@ -48,6 +48,13 @@ use-latest-nms-version: false
 # datapacks.
 disable-post-load-datapack-reload: false
 
+# Disable the CommandAPI's datapack reload during /minecraft:reload (default: false)
+# If "true", the CommandAPI will not reload datapacks when /minecraft:reload is run
+# This will prevent the CommandAPI from linking CommandAPI commands to datapacks.
+# Use this if you are having issues with the CommandAPI interfering with reloading
+# datapacks.
+disable-paper-datapack-reload-hook: false
+
 ################################################################################
 # Command conversion                                                           #
 ################################################################################
