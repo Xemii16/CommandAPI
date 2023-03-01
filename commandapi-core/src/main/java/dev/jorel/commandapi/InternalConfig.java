@@ -72,6 +72,8 @@ public class InternalConfig {
 	private final Function<Object, ?> nbtContainerConstructor;
 
 	private final NMS<?> customNMS;
+	
+	private final boolean disablePostLoadDatapackReload;
 
 	InternalConfig(FileConfiguration fileConfig, Class<?> nbtContainerClass,
 		Function<Object, ?> nbtContainerConstructor, File dispatcherFile) {
@@ -80,6 +82,7 @@ public class InternalConfig {
 		this.useLatestNMSVersion = fileConfig.getBoolean("use-latest-nms-version");
 		this.message_missingExecutorImplementation = fileConfig.getString("messages.missing-executor-implementation");
 		this.dispatcherFile = fileConfig.getBoolean("create-dispatcher-json") ? dispatcherFile : null;
+		this.disablePostLoadDatapackReload = fileConfig.getBoolean("disable-post-load-datapack-reload");
 		this.pluginsToConvert = new HashMap<>();
 		this.skipSenderProxy = new ArrayList<>();
 		this.commandsToConvert = new ArrayList<>();
@@ -152,6 +155,7 @@ public class InternalConfig {
 		this.useLatestNMSVersion = config.useLatestNMSVersion;
 		this.message_missingExecutorImplementation = config.missingExecutorImplementationMessage;
 		this.dispatcherFile = config.dispatcherFile;
+		this.disablePostLoadDatapackReload = config.disablePostLoadDatapackReload;
 		this.pluginsToConvert = new HashMap<>();
 		this.skipSenderProxy = new ArrayList<>();
 		this.commandsToConvert = new ArrayList<>();
@@ -244,6 +248,10 @@ public class InternalConfig {
 
 	public NMS<?> getCustomNMS() {
 		return this.customNMS;
+	}
+	
+	public boolean hasDisabledPostLoadDatapackReload() {
+		return this.disablePostLoadDatapackReload;
 	}
 
 }

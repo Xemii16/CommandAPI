@@ -120,6 +120,30 @@ use-latest-nms-version: true
 
 -----
 
+### `disable-post-load-datapack-reload`
+
+Controls whether the CommandAPI should perform its post-server-load datapack reload step.
+
+When the server has finished loading, the CommandAPI will schedule a custom datapack reload step to re-link all registered Commands with all datapacks. More information about this can be found [here](./incompatibleversions.md#commandapi-behavior-with-respect-to-minecraft-version).
+
+When this setting is set to `true`, the CommandAPI will not perform this datapack reload step when the server has finished loading. This will prevent commands registered via the CommandAPI from linking to any datapacks that requires commands registered via the CommandAPI (for example, in datapack functions or tags).
+
+This setting can be set to `true` if you are having issues with the CommandAPI interfering with datapack reloading.
+
+**Default value**
+
+```yml
+disable-post-load-datapack-reload: false
+```
+
+**Example value**
+
+```yml
+disable-post-load-datapack-reload: true
+```
+
+-----
+
 ### `plugins-to-convert`
 
 Controls the list of plugins to process for command conversion. See [Command conversion](./conversionforowners.md) for more information.

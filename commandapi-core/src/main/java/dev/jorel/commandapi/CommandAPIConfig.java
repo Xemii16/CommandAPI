@@ -44,6 +44,8 @@ public class CommandAPIConfig {
 
 	File dispatcherFile = null;
 	NMS<?> customNMS;
+	
+	boolean disablePostLoadDatapackReload = false;
 
 	/**
 	 * Sets verbose output logging for the CommandAPI if true.

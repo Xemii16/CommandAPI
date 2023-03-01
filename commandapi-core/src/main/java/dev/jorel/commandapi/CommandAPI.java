@@ -197,7 +197,9 @@ public final class CommandAPI {
 
 			// Sort out permissions after the server has finished registering them all
 			CommandAPIHandler.getInstance().fixPermissions();
-			CommandAPIHandler.getInstance().getNMS().reloadDataPacks();
+			if (!CommandAPI.getConfiguration().hasDisabledPostLoadDatapackReload()) {
+				CommandAPIHandler.getInstance().getNMS().reloadDataPacks();
+			}
 			CommandAPIHandler.getInstance().updateHelpForCommands();
 		}, 0L);
 
