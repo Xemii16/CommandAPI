@@ -32,6 +32,6 @@ import dev.jorel.commandapi.arguments.NBTCompoundArgument;
  */
 @Primitive("dev.jorel.commandapi.nbtapi.NBTContainer")
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.PARAMETER)
+@Target({ElementType.PARAMETER, ElementType.FIELD})
 public @interface ANBTCompoundArgument {
 }
