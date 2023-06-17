@@ -54,7 +54,7 @@ public class CommandAPIMain {
 			throw new RuntimeException(e);
 		}
 
-		CommandAPIVelocityConfig config = new CommandAPIVelocityConfig(server)
+		CommandAPIVelocityConfig config = new CommandAPIVelocityConfig(this, server)
 			.verboseOutput(configYAML.getNode("verbose-outputs").getBoolean())
 			.silentLogs(configYAML.getNode("silent-logs").getBoolean())
 			.missingExecutorImplementationMessage(configYAML.getNode("messages", "missing-executor-implementation").getString())

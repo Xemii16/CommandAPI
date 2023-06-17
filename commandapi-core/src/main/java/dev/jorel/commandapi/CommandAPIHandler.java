@@ -23,8 +23,6 @@ package dev.jorel.commandapi;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,6 +60,7 @@ import dev.jorel.commandapi.arguments.Previewable;
 import dev.jorel.commandapi.commandsenders.AbstractCommandSender;
 import dev.jorel.commandapi.executors.CommandArguments;
 import dev.jorel.commandapi.executors.ExecutionInfo;
+import dev.jorel.commandapi.network.CommandAPIMessenger;
 import dev.jorel.commandapi.preprocessor.RequireField;
 import dev.jorel.commandapi.wrappers.PreviewableFunction;
 
@@ -118,6 +117,8 @@ extends AbstractArgument<?, ?, Argument, CommandSender>
 	private static final Map<ClassCache, Field> FIELDS = new HashMap<>();
 
 	final CommandAPIPlatform<Argument, CommandSender, Source> platform;
+	private CommandAPIMessenger<?, ?> messenger;
+
 	final TreeMap<String, CommandPermission> registeredPermissions = new TreeMap<>();
 	final List<RegisteredCommand> registeredCommands; // Keep track of what has been registered for type checking
 	final Map<List<String>, Previewable<?, ?>> previewableArguments; // Arguments with previewable chat
@@ -149,9 +150,13 @@ extends AbstractArgument<?, ?, Argument, CommandSender>
 
 	public void onEnable() {
 		platform.onEnable();
+		// Setting up the network messenger usually requires registering
+		//  events, which often does not work until onEnable
+		messenger = platform.setupMessenger();
 	}
 
 	public void onDisable() {
+		messenger.close();
 		platform.onDisable();
 		CommandAPIHandler.resetInstance();
 	}
